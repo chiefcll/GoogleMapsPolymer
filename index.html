@@ -21,30 +21,29 @@
 </head>
 
 <body unresolved>
-  <google-map latitude="37.779" longitude="-122.3892" zoom="13" disable-default-ui
-        api-key="AIzaSyDy5cfcOOsWZ3FrrFuo5ed2e6vd3zC51Zc">
-      <google-map-marker latitude="37.779" longitude="-122.3892"
-            title="Go Giants!" draggable="true"></google-map-marker>
-  </google-map>
-  <google-map-directions
-      start-address="San Francisco"
-      end-address="Mountain View"
-      api-key="AIzaSyDy5cfcOOsWZ3FrrFuo5ed2e6vd3zC51Zc"></google-map-directions>
-  <paper-card elevation="2"> <!-- elevation controls the amount of box shadow -->
-    <paper-icon-item>
-      <iron-icon icon="search" item-icon></iron-icon>
-      <paper-input label="Start address" value="San Francisco"></paper-input>
-    </paper-icon-item>
-    <paper-icon-item>
-      <iron-icon icon="search" item-icon></iron-icon>
-      <paper-input label="End address" value="Mountain View"></paper-input>
-    </paper-icon-item>
-  </<paper-card>
-  <script>
-    var gMap = document.querySelector('google-map');
-    gMap.addEventListener('api-load', function(e) {
-      document.querySelector('google-map-directions').map = this.map;
-    });
-  </script>
+
+  <template is="dom-bind">
+    <google-map latitude="37.779" longitude="-122.3892" zoom="13" disable-default-ui
+          map="{{map}}"
+          api-key="AIzaSyDy5cfcOOsWZ3FrrFuo5ed2e6vd3zC51Zc">
+        <google-map-marker latitude="37.779" longitude="-122.3892"
+              title="Go Giants!" draggable="true"></google-map-marker>
+    </google-map>
+    <google-map-directions
+        map="{{map}}"
+        start-address="{{start}}"
+        end-address="{{end}}"
+        api-key="AIzaSyDy5cfcOOsWZ3FrrFuo5ed2e6vd3zC51Zc"></google-map-directions>
+    <paper-card elevation="2"> <!-- elevation controls the amount of box shadow -->
+      <paper-icon-item>
+        <iron-icon icon="search" item-icon></iron-icon>
+        <paper-input label="Start address" value="{{start}}"></paper-input>
+      </paper-icon-item>
+      <paper-icon-item>
+        <iron-icon icon="search" item-icon></iron-icon>
+        <paper-input label="End address" value="{{end}}"></paper-input>
+      </paper-icon-item>
+    </<paper-card>
+  </template>
 </body>
 </html>
