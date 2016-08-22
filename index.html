@@ -17,7 +17,29 @@
   <link rel="import" href="bower_components/paper-item/paper-icon-item.html">
   <link rel="import" href="bower_components/paper-input/paper-input.html">
   <link rel="import" href="bower_components/paper-card/paper-card.html">
+  <link rel="import" href="bower_components/iron-icons/maps-icons.html">
+  <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
   <link rel="stylesheet" href="styles.css">
+  <style is="custom-style">
+    paper-tabs {
+      --paper-tabs-selection-bar-color: #0D47A1;
+      margin-top: 16px;
+    }
+    paper-tab {
+      --paper-tab-ink: #BBDEFB;
+    }
+
+    /* Other styles that make things more pleasant.
+       These could instead be added in styles.css since they
+       do not use any Polymer styling features. */
+    paper-tab iron-icon {
+      margin-right: 10px;
+    }
+    paper-tab.iron-selected {
+      background: rgb(66, 133, 244);
+      color: white;
+    }
+  </style>
 </head>
 
 <body unresolved>
@@ -33,17 +55,38 @@
         map="{{map}}"
         start-address="{{start}}"
         end-address="{{end}}"
+        travel-mode="{{travelMode}}"
         api-key="AIzaSyDy5cfcOOsWZ3FrrFuo5ed2e6vd3zC51Zc"></google-map-directions>
     <paper-card elevation="2"> <!-- elevation controls the amount of box shadow -->
       <paper-icon-item>
         <iron-icon icon="search" item-icon></iron-icon>
-        <paper-input label="Start address" value="{{start}}"></paper-input>
+        <paper-input label="Start address" value="{{start}}" size="42"></paper-input>
       </paper-icon-item>
       <paper-icon-item>
         <iron-icon icon="search" item-icon></iron-icon>
-        <paper-input label="End address" value="{{end}}"></paper-input>
+        <paper-input label="End address" value="{{end}}" size="42"></paper-input>
       </paper-icon-item>
     </<paper-card>
+    <!-- selected="0" selects the first item in the tab list.
+     Change it to another index if you want a different default. -->
+   <paper-tabs selected="{{travelMode}}" attr-for-selected="label">
+     <paper-tab label="DRIVING">
+       <iron-icon icon="maps:directions-car"></iron-icon>
+       <span>DRIVING</span>
+     </paper-tab>
+     <paper-tab label="WALKING">
+       <iron-icon icon="maps:directions-walk"></iron-icon>
+       <span>WALKING</span>
+     </paper-tab>
+     <paper-tab label="BICYCLING">
+       <iron-icon icon="maps:directions-bike"></iron-icon>
+       <span>BICYCLING</span>
+     </paper-tab>
+     <paper-tab label="TRANSIT">
+       <iron-icon icon="maps:directions-transit"></iron-icon>
+       <span>TRANSIT</span>
+     </paper-tab>
+   </paper-tabs>
   </template>
 </body>
 </html>
